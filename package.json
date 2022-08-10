@@ -1,8 +1,8 @@
 {
-  "name": "util-discord",
+  "name": "@zoodogood/util-discordjs",
   "type": "module",
-  "repository": "",
-  "version": "1.0.0",
+  "repository": "https://github.com/zoodogood/util-discordjs",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {

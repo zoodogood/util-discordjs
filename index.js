@@ -1,4 +1,4 @@
-import { ActionRow, Embed, ModalBuilder } from 'discord.js';
+import { ActionRow, EmbedBuilder, ModalBuilder, resolveColor } from 'discord.js';
 import { ComponentType } from 'discord-api-types/v10';
 
 
@@ -40,9 +40,10 @@ function CreateMessage({
   thumbnail &&= { url: trumbnail };
   image     &&= { url: image };
 
-  color ||= "RANDOM";
 
-  const embed = new Embed({
+  color = resolveColor(color ?? "Random");
+
+  const embed = new EmbedBuilder({
     title, url, author, thumbnail,
     description, color, fields,
     image, video, footer, timestamp
@@ -52,7 +53,7 @@ function CreateMessage({
     message.embeds = [embed];
   }
 
-  message.components = components ? new SimplifyComponents(components) : null;
+  message.components = components ? SimplifyComponents(components) : null;
 
 
   message.content    = content;
@@ -64,7 +65,7 @@ function CreateMessage({
 
 function CreateModal({title, customId, components}){
   components = SimplifyComponents(components);
-  return new ModalBuilder().from({title, customId, components});
+  return new ModalBuilder({title, customId, components});
 }
 
 
